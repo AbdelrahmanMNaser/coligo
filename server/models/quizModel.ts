@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
 import { IQuiz } from "@/types/quizTypes";
+import { Schema, model } from "mongoose";
 
 const quizQuestionSchema = new Schema({
   question: {
@@ -38,6 +38,12 @@ const quizSchema = new Schema<IQuiz>(
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    dueDate: {
+      type: Date,
+    },
+    dueTime: {
+      type: String,
     },
   },
   {

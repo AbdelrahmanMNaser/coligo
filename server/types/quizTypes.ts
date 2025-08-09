@@ -12,6 +12,8 @@ export interface IQuizInfo {
   topicId: mongoose.Types.ObjectId; // reference to course topic
   questions: IQuizQuestion[];
   createdBy: mongoose.Types.ObjectId; // user id
+  dueDate?: Date;
+  dueTime?: string;
   createdAt?: Date;
 }
 

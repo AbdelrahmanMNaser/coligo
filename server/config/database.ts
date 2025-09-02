@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
-const MONGO_URI = process.env.coligo;
-if (!MONGO_URI) throw new Error('Environment variable "coligo" (MongoDB URI) is not defined.');
-
 export async function connectDB(): Promise<void> {
+
+const MONGO_URI = process.env.DATABASE_URI;
+if (!MONGO_URI) throw new Error('Environment variable "DATABASE_URI" (MongoDB URI) is not defined.');
+
     try {
         await mongoose.connect(MONGO_URI!, {
             // use recommended options via ConnectOptions

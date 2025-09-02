@@ -1,6 +1,7 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+    
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
@@ -13,7 +14,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "es2022",
     "moduleResolution": "node",
-    "target": "esnext",
+    "target": "es2022",
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -45,6 +46,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true  
   }
 }

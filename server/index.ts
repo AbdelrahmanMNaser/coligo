@@ -1,16 +1,15 @@
-import express, { Application } from 'express';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDB } from './config/database';
-import userRoutes from './routes/userRoutes';
-import courseRoutes from './routes/courseRoutes';
-import { errorHandler } from './middlewares/errorHandler';
+import { connectDB } from '@/config/database';
+import { errorHandler } from '@/middlewares/errorHandler';
+import courseRoutes from '@/routes/courseRoutes';
+import userRoutes from '@/routes/userRoutes';
 
-// Load environment variables
 dotenv.config();
 
-// Create Express application
-const app: Application = express();
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -18,21 +17,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
+app.use('/api/users', userRoutes);
+
+// Health check
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Server is running' });
+  
+});
 
 // Error handling middleware
 app.use(errorHandler);
 
-// Port configuration
-const PORT = process.env.PORT || 5000;
-
 // Start server
 const startServer = async () => {
   try {
-    // Connect to MongoDB
     await connectDB();
-    
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
@@ -43,3 +43,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+export default app;
